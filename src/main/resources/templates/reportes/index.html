@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<!-- <head th:replace="layout/layout :: head"> -->
+
+<head>
+	<title>Reporte </title>
+</head>
+
+<body>
+	<!--<div class="right_col" role="main" layout:fragment="page-content">-->
+	<div class="container-fluid" layout:fragment="page-content">
+		<div class="row mt-3">
+			<div class="col-md-12 col-sm-12 ">
+				<div class="dashboard_graph">
+					<div class="row x_title">
+						<div class="col-md-6">
+							<h3>Reportes </h3>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<!-- <div class="col-lg-3"><a th:href="@{/diagnosticos/nuevo}" class="btn btn-primary">Nuevo
+								diagnostico</a>
+						</div> -->
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="container"> -->
+		<div class="table-responsive">
+			<table id="tablaDatos" name="tablaDatos" class="table table-striped table-hover table-bordered">
+				<thead class="table-primary">
+					<tr>
+						<th hidden>Identificacion</th>
+						<th>Empleado</th>
+						<th>Area</th>
+						<th hidden>Cargo</th>
+						<th>Salario día</th>
+						<th hidden>EPS</th>
+						<th hidden>ARL</th>
+						<th hidden>AFP</th>
+						<th>Tipo incapacidad</th>
+						<th>Clasificación</th>
+						<th>Diagnostico</th>
+						<th hidden>Fecha Inicio</th>
+						<th hidden>Fecha Fin</th>
+						<th>Duración</th>
+						<th>Valor incapacidad</th>
+						<th>Valor asumido por la empresa</th>
+						<th>Valor asumido por la EPS</th>
+						<th>Valor asumido por la ARL</th>
+						<th>Valor asumido por la AFP</th>
+						<th>Estado</th>
+					</tr>
+
+				</thead>
+				<tbody>
+					<!-- <tr th:each="ausentismo : ${ausentismos}">
+						<td th:text="${ausentismo.empleados.tiposIdentificaciones.prefijo} + ' - ' + ${ausentismo.empleados.identificacion}"
+							hidden>
+							Identificación</td>
+						<td th:text="${ausentismo.empleados.nombres} + ' ' + ${ausentismo.empleados.apellidos}">
+							Nombre completo</td>
+						<td th:text="${ausentismo.areas.nombre}">
+							Area</td>
+						<td th:text="${ausentismo.cargo}" hidden>
+							Cargo</td>
+						<td th:text="${#numbers.formatDecimal(ausentismo.salario/30,3,2)}">salario x dia</td>
+						<td th:text="${ausentismo.entidadesEps.nombre}" hidden>
+							EPS</td>
+						<td th:text="${ausentismo.entidadesArl.nombre}" hidden>
+							ARL</td>
+						<td th:text="${ausentismo.entidadesAfp.nombre}" hidden>
+							AFP</td>
+						<td th:text="${ausentismo.tipoincapacidad}">
+							tipoIncapacidad
+						</td>
+						<td th:text="${ausentismo.clasificacion}">
+							clasificacion
+						</td>
+						<td
+							th:text="${ausentismo.diagnosticos.codigo} + ' - ' + ${ausentismo.diagnosticos.diagnostico}">
+							Diagnostico</td>
+						<td th:text="${ausentismo.fechainicio}" hidden>
+							Fecha</td>
+						<td th:text="${ausentismo.fechafin}" hidden>
+							Fecha</td>
+						<td th:text="${ausentismo.duracion}" class="text-end">Duracion</td>
+						<td>valor incapacidad</td>
+						<td>Asumido por la empresa</td>
+						<td>Asumido EPS</td>
+						<td>Asumido ARL</td>
+						<td>Asumido AFP</td>
+						<td th:text="${ausentismo.estado} ? 'ACTIVO' : 'RETIRADA'">Estado</td>
+					</tr> -->
+
+					<tr th:each="ausentismo : ${datosReporte}">
+						<td th:text="${ausentismo.identificacion}" hidden>
+							Identificación</td>
+						<td th:text="${ausentismo.empleado}">
+							Nombre completo</td>
+						<td th:text="${ausentismo.area}">
+							Area</td>
+						<td th:text="${ausentismo.cargo}" hidden>
+							Cargo</td>
+						<td th:text="${ausentismo.salarioPorDia}">salario x dia</td>
+						<td th:text="${ausentismo.eps}" hidden>
+							EPS</td>
+						<td th:text="${ausentismo.arl}" hidden>
+							ARL</td>
+						<td th:text="${ausentismo.afp}" hidden>
+							AFP</td>
+						<td th:text="${ausentismo.tipoIncapacidad}">
+							tipoIncapacidad
+						</td>
+						<td th:text="${ausentismo.clasificacion}">
+							clasificacion
+						</td>
+						<td th:text="${ausentismo.diagnostico}">
+							Diagnostico</td>
+						<td th:text="${ausentismo.fechaInicio}" hidden>
+							Fecha</td>
+						<td th:text="${ausentismo.fechaFin}" hidden>
+							Fecha</td>
+						<td th:text="${ausentismo.duracion}" class="text-end">Duracion</td>
+						<td th:text="${ausentismo.valorIncapacidad}">valor incapacidad</td>
+						<td th:text="${ausentismo.valorIncapacidad.valorEmpresa}">Asumido por la empresa</td>
+						<td th:text="${ausentismo.valorIncapacidad.valorEps}">Asumido EPS</td>
+						<td th:text="${ausentismo.valorIncapacidad.valorArl}">Asumido ARL</td>
+						<td th:text="${ausentismo.valorIncapacidad.valorAfp}">Asumido AFP</td>
+						<td th:text="${ausentismo.estado} ? 'ACTIVO' : 'RETIRADA'">Estado</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<!-- </div> -->
+
+	</div>
+
+	<th:block layout:fragment="page-scripts">
+		<script>
+			// $(document).ready(function () {
+			// 	$('#tablaDatos').DataTable();
+			// });
+
+			$(document).ready(function () {
+				$('#tablaDatos').DataTable({
+					"language": {
+						"lengthMenu": "Mostrar _MENU_ registros por página",
+						"zeroRecords": "No se encontró información",
+						"info": "Mostrando página _PAGE_ de _PAGES_",
+						"infoEmpty": "No hay registros disponibles",
+						"search": "Buscar información: ",
+						"infoFiltered": "(filtrado de _MAX_ registros totales)"
+					},
+					responsive: "true",
+					dom: 'Blfrtip',
+					//buttons: ['copy', 'excel', 'pdf'],
+					buttons: [
+						{
+							extend: 'excelHtml5',
+							text: '<i class="fas fa-file-excel"></i>',
+							titleAttr: "Exportar a Excel",
+							className: "btn btn-success mb-2"
+						},
+						{
+							extend: 'pdfHtml5',
+							text: '<i class="fas fa-file-pdf"></i>',
+							titleAttr: "Exportar a PDF",
+							className: "btn btn-danger mb-2"
+						},
+						{
+							extend: 'print',
+							text: '<i class="fas fa-print"></i>',
+							titleAttr: "Imprimir",
+							className: "btn btn-info mb-2"
+						},
+					]
+				});
+			});
+		</script>
+	</th:block>
+
+</body>
+
+</html>
