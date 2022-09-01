@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<!--<div class="right_col" role="main" layout:fragment="page-content">-->
+	<div class="container-fluid" layout:fragment="page-content">
+		<div class="container mt-3">
+			<div class="row">
+				<h3 class="mb-3">Nuevo empleado</h3>
+				<form th:action="@{/empleados}" th:object="${empleado}" method="post" class="needs-validation">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="nombres" class="form-label">Nombre del empleado</label>
+								<input type="text" class="form-control" id="nombres" name="nombres" maxlength="80"
+									th:field="*{nombres}" placeholder="Nombre del empleado" required />
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="apellidos" class="form-label">Apellidos del empleado</label>
+								<input type="text" class="form-control" id="apellidos" name="apellidos" maxlength="80"
+									th:field="*{apellidos}" placeholder="Apellidos del empleado" required />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="tipo" class="form-label">Tipo de identificación</label>
+								<select id="tipo" name="tipo" class="form-select" th:field="*{tiposIdentificaciones}"
+									aria-label="Default select example" required>
+									<option value="">Seleccione una opción</option>
+									<option th:each="tipo : ${tipoID}" th:value="${tipo.secuencia}"
+										th:text="${tipo.nombre}">
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="nit" class="form-label">Identificación</label>
+								<input type="text" class="form-control" name="nit" id="nit" maxlength="11"
+									th:field="*{identificacion}" placeholder="Identificación del empleado" required />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-5">
+							<div class="mb-3">
+								<label for="area" class="form-label">Area de desempeño</label>
+								<select id="areas" name="areas" th:field="*{areas}" class="form-select" required>
+									<option value="">Seleccione una opción</option>
+									<option th:each="area : ${areas}" th:value="${area.secuencia}"
+										th:text="${area.nombre}">
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="mb-3">
+								<label for="cargo" class="form-label">Cargo de desempeño</label>
+								<input type="text" class="form-control" name="cargo" id="cargo" maxlength="80"
+									th:field="*{cargo}" placeholder="Cargo de desempeño" required />
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="mb-3">
+								<label for="salario" class="form-label">Sueldo</label>
+								<input type="number" min="50000" class="form-control" name="salario" id="salario"
+									maxlength="11" th:field="*{salario}" placeholder="Salario del empleado" required />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="eps" class="form-label">EPS</label>
+								<select id="eps" name="eps" th:field="*{entidadesEps}" class="form-select" required>
+									<option value="">Seleccione una opción</option>
+									<option th:each="entidad : ${eps}" th:value="${entidad.codigo}"
+										th:text="${entidad.nombre}">
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="afp" class="form-label">AFP</label>
+								<select id="afp" name="afp" class="form-select" th:field="*{entidadesAfp}" required>
+									<option value="">Seleccione una opción</option>
+									<option th:each="entidad : ${afp}" th:value="${entidad.codigo}"
+										th:text="${entidad.nombre}">
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="arl" class="form-label">ARL</label>
+								<select id="arl" name="arl" class="form-select" th:field="*{entidadesArl}" required>
+									<option value="">Seleccione una opción</option>
+									<option th:each="entidad : ${arl}" th:value="${entidad.codigo}"
+										th:text="${entidad.nombre}">
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="mb-3 mt-3">
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a th:href="@{/empleados}" class="btn btn-secondary">Cancelar</a>
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
