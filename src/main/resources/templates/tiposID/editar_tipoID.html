@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<!--<div class="right_col" role="main" layout:fragment="page-content">-->
+	<div class="container-fluid" layout:fragment="page-content">
+		<div class="container mt-3">
+			<div class="row">
+				<h3 class="mb-3">Editar tipo de identificación</h3>
+				<form th:action="@{/tiposID/{id}}" th:object="${tipoIdentificacion}" method="post"
+					class="needs-validation">
+
+					<div class="row">
+						<div class="col-md-3">
+							<div class="mb-3">
+								<label for="secuencia" class="form-label visually-hidden">Secuencia</label>
+								<input type="text" class="form-control text-center" id="secuencia" name="secuencia"
+									maxlength="10" th:field="*{secuencia}" placeholder="Secuencia" readonly required />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-2">
+							<div class="mb-3">
+								<label for="prefijo" class="form-label">Prefijo ID</label>
+								<input type="text" class="form-control text-center" name="prefijo" id="prefijo"
+									maxlength="3" th:field="*{prefijo}" placeholder="Prefijo ID" required />
+							</div>
+						</div>
+
+						<div class="col-md-8">
+							<div class="mb-3">
+								<label for="nombre" class="form-label">Nombre ID</label>
+								<input type="text" class="form-control" id="nombre" name="nombre" maxlength="80"
+									th:field="*{nombre}" placeholder="Nombre tipo identificación" required />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="mb-3">
+								<label for="estado" class="form-label">Estado</label>
+								<select id="estado" name="estado" class="form-select" th:field="*{estado}"
+									aria-label="Default select example" required>
+									<option value="">Seleccione una opción</option>
+									<option value=1>Activa</option>
+									<option value=0>Inactiva</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="mb-3 mt-3">
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a th:href="@{/tiposID}" class="btn btn-secondary">Cancelar</a>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

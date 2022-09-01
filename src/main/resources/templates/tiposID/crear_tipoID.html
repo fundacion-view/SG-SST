@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<!--<div class="right_col" role="main" layout:fragment="page-content">-->
+	<div class="container-fluid" layout:fragment="page-content">
+		<div class="container mt-3">
+			<div class="row">
+				<h3 class="mb-3">Nuevo tipo de identificación</h3>
+				<form th:action="@{/tiposID}" th:object="${tipoIdentificacion}" method="post" class="needs-validation">
+					<div class="row">
+						<div class="col-md-2">
+							<div class="mb-3">
+								<label for="prefijo" class="form-label">Prefijo ID</label>
+								<input type="text" class="form-control text-center" name="prefijo" id="prefijo"
+									maxlength="3" th:field="*{prefijo}" placeholder="Prefijo ID" required />
+							</div>
+						</div>
+						<div class="col-md-10">
+							<div class="mb-3">
+								<label for="nombre" class="form-label">Nombre ID</label>
+								<input type="text" class="form-control" name="nombre" id="nombre" maxlength="80"
+									th:field="*{nombre}" placeholder="Nombre tipo identificación" required />
+							</div>
+						</div>
+					</div>
+					<div class="mb-3 mt-3">
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a th:href="@{/tiposID}" class="btn btn-secondary">Cancelar</a>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
