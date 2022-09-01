@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+
+<head th:replace="layout/layout :: head">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+
+    <div class="container-fluid" layout:fragment="page-content">
+
+        <!-- <h1 th:text="${titulo}"></h1> -->
+
+        <!-- <div class="alert alert-success fs-3">
+
+			<p align="justify">El Decreto 1072 de 2015 obliga a todas las empresas a implementar un sistema de
+				gestión de la seguridad y la salud de los trabajadores. El sistema de gestión es “un
+				desarrollo de un proceso lógico y por etapas, basado en la mejora continua, que
+				incluye la política, la organización, la planificación, la aplicación, la evaluación, la
+				auditoria y las acciones de mejora con el objetivo de anticipar, reconocer, evaluar y
+				controlar los riesgos que puedan afectar la seguridad y la salud en el trabajo”
+				(Ministerio de cultura) actualmente en la mayoría de las empresas, los procesos del
+				SG-SST son llevados a cabo de manera manual en formatos del programa Excel,
+				esta situación acarrea que el trabajo de los encargados del sistema sea más
+				complejo y que se presenten errores en la correcta aplicación
+			</p>
+		</div> -->
+
+        <div>
+            <img id="imagen" th:src="@{/imagenes/pagina_en_construccion.png}" class="img-fluid w-100"
+                alt="Sección en construcción" />
+        </div>
+
+    </div>
+
+    <!--OTRO SCRIPTS PARA PAGINAS-->
+    <th:block layout:fragment="page-scripts">
+
+    </th:block>
+
+</body>
+
+</html>

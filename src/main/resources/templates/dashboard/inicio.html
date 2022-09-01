@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:fragment="head">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="Duhan Enrique Renteria" />
+	<title>SIGA - Sistema Gestión Ausentismo</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" th:href="@{/imagenes/favicon/favicon2.ico}" />
+
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+	<!-- dataTable CSS-->
+	<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+	<!-- <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet" /> -->
+
+	<!-- dataTable JS-->
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+	<script type="text/javascript" language="javascript"
+		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+	<script type="text/javascript" language="javascript"
+		src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+	<script type="text/javascript" language="javascript"
+		src="https://datatables.net/examples/resources/demo.js"></script>
+
+	<script th:src="@{/js/dselect.js}"></script>
+</head>
+
+<body>
+	<div class="d-flex" id="wrapper">
+		<!-- Sidebar-->
+		<div class="border-end bg-primary" id="sidebar-wrapper">
+			<div class="sidebar-heading border-bottom bg-primary text-white align-middle text-center m-0 pt-0"
+				style="max-height:64px">
+				<span class="fs-3">SIGA</span>
+				<!-- <img id="imagen" th:src="@{/imagenes/logoAPP260x260.png}" class="m-0" style="height:32px;width:32px" alt="logo" /> -->
+			</div>
+			<div class="list-group list-group-flush">
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/dashboard}">Dashboard</a>
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/salariosminimos}">SMLMV</a>
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/entidades}">Entidades</a>
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/diagnosticos}">Diagnosticos</a>
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/tiposID}">Tipos ID</a>
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/areas}">Areas</a>
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/empleados}">Empleados</a>
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/usuarios}">Usuarios</a>
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/ausentismos}">Incapacidades</a>
+				<a class="list-group-item list-group-item-action list-group-item-primary p-3"
+					th:href="@{/reportes}">Reportes</a>
+			</div>
+		</div>
+		<!-- Page content wrapper-->
+		<div id="page-content-wrapper">
+			<!-- Top navigation-->
+			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<div class="container-fluid">
+					<button class="btn btn-primary" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="ms-3">
+						<h5>Sistema Gestión Ausentismo</h5>
+					</div>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle m-0 p-0 fw-bold" id="navbarDropdown" href="#"
+									role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img id="imagen" th:src="@{/imagenes/logoAPP260x260.png}" class="p-0"
+										style="height:40px;width:40px" alt="logo" /> <span
+										sec:authentication="principal.username"></span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="#!">Mi perfil</a>
+									<div class="dropdown-divider"></div>
+									<div sec:authorize="isAuthenticated()"><a class="dropdown-item"
+											th:href="@{/logout}">Cerrar
+											sesión</a></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!-- Page content-->
+			<div class="container-fluid" layout:fragment="page-content">
+				<img id="imagen" th:src="@{/imagenes/pagina_en_construccion.png}" class="img-fluid w-100"
+					alt="Sección en construcción" />
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Bootstrap core JS-->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+	<!-- Core theme JS-->
+	<script th:src="@{/js/scripts.js}"></script>
+
+	<script src="https://kit.fontawesome.com/72156f2c6c.js" crossorigin="anonymous"></script>
+
+	<!-- bootstrap-select core JS-->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
+
+	<!--OTRO SCRIPTS PARA PAGINAS-->
+	<th:block layout:fragment="page-scripts">
+
+	</th:block>
+</body>
+
+</html>
