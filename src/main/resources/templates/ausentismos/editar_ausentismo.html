@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+	<!--<div class="right_col" role="main" layout:fragment="page-content">-->
+	<div class="container-fluid" layout:fragment="page-content">
+		<div class="container mt-3">
+			<div class="row">
+				<h3 class="mb-3">Editar incapacidad</h3>
+				<form th:action="@{/ausentismos/{id}}" th:object="${ausentismo}" method="post" class="needs-validation">
+
+					<!-- DATOS DEL EMPLEADO -->
+					<div class="bg-primary text-white text-center mb-3">
+						DATOS DEL EMPLEADO
+					</div>
+
+					<div class="col-2" hidden>
+						<div class="mb-3">
+							<label for="secuencia" class="form-label"></label>
+							<input type="hidden" class="form-control" id="secuencia" name="secuencia" maxlength="10"
+								th:field="*{consecutivo}" placeholder="Secuencia" readonly required />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="codempleado" class="form-label">Empleado</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="fa-solid fa-people-roof"
+											disabled></i></span>
+									<select id="codempleado" name="codempleado" class="form-select form-controll p-00"
+										th:field="*{empleados}" required>
+										<option value="">Seleccione una opción</option>
+										<option th:each="empleado : ${empleados}" th:value="${empleado.codempleado}"
+											th:text="${empleado.nombres} + ' ' + ${empleado.apellidos}">
+										</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="mb-3">
+								<label for="salario" class="form-label">Sueldo</label>
+								<div class="input-group">
+									<input type="number" min="1000.00" class="form-control" name="salario" id="salario"
+										maxlength="11" th:field="*{salario}" placeholder="" required />
+									<span class="input-group-text p-0"><i
+											class="btn fa-solid fa-lock-open text-primary"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="mb-3">
+								<label for="salarioxdia" class="form-label">Sueldo diario</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="fa-solid fa-money-bill"></i></span>
+									<input type="number" min="1000.00" class="form-control" name="salarioxdia"
+										id="salarioxdia" maxlength="11" th:value="${salarioxdia}" placeholder=""
+										readonly required />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="areas" class="form-label">Area de desempeño</label>
+								<div class="input-group">
+									<select id="areas" name="areas" th:field="*{areas}" class="form-select" disabledd
+										required>
+										<option value="">Seleccione una opción</option>
+										<option th:each="area : ${areas}" th:value="${area.secuencia}"
+											th:text="${area.nombre}">
+										</option>
+									</select>
+									<span class="input-group-text p-0"><i
+											class="btn fa-solid fa-lock-open text-primary"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="cargo" class="form-label">Cargo de desempeño</label>
+								<input type="text" class="form-control" name="cargo" id="cargo" maxlength="80"
+									th:field="*{cargo}" placeholder="" readonlyy required />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="entidadesEps" class="form-label">EPS</label>
+								<div class="input-group">
+									<select id="entidadesEps" name="entidadesEps" th:field="*{entidadesEps}"
+										class="form-select" title="Seleccione una opción" data-style="form-control"
+										data-show-subtext="true" data-live-search="true" disabledd required>
+										<option value="">Seleccione una opción</option>
+										<option th:each="entidad : ${listaEps}" th:value="${entidad.codigo}"
+											th:text="${entidad.nombre}">
+										</option>
+									</select>
+									<span class="input-group-text p-0"><i
+											class="btn fa-solid fa-lock-open text-primary"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="mb-4">
+								<label for="entidadesAfp" class="form-label">AFP</label>
+								<div class="input-group">
+									<select id="entidadesAfp" name="entidadesAfp" th:field="*{entidadesAfp}"
+										class="form-select" title="Seleccione una opción" data-style="form-control"
+										data-show-subtext="true" data-live-search="true" disabledd required>
+										<option value="">Seleccione una opción</option>
+										<option th:each="entidad : ${listaAfp}" th:value="${entidad.codigo}"
+											th:text="${entidad.nombre}">
+										</option>
+									</select>
+									<span class="input-group-text p-0"><i
+											class="btn fa-solid fa-lock-open text-primary"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="entidadesArl" class="form-label">ARL</label>
+								<div class="input-group">
+									<select id="entidadesArl" name="entidadesArl" th:field="*{entidadesArl}"
+										class="form-select" title="Seleccione una opción" data-style="form-control"
+										data-show-subtext="true" data-live-search="true" disabledd required>
+										<option value="">Seleccione una opción</option>
+										<option th:each="entidad : ${listaArl}" th:value="${entidad.codigo}"
+											th:text="${entidad.nombre}">
+										</option>
+									</select>
+									<span class="input-group-text p-0"><i
+											class="btn fa-solid fa-lock-open text-primary"></i></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- FIN DATOS DEL EMPLEADO -->
+
+					<!-- DETALLES AUSENTISMO -->
+					<div class="bg-primary text-white text-center mb-3">
+						DETALLES INCAPACIDAD O LICENENCIA
+					</div>
+
+					<div class="row">
+						<div class="col-md-3">
+							<div class="mb-3">
+								<label for="tipoincapacidad" class="form-label">Tipo incapacidad</label>
+								<select id="tipoincapacidad" name="tipoincapacidad" th:field="*{tipoincapacidad}"
+									class="form-select" required>
+									<option value="">Seleccione una opción</option>
+									<option value="ORIGEN COMUN">ENFERMEDAD COMUN</option>
+									<option value="LICENCIA DE MATERNIDAD">LICENCIA DE MATERNIDAD</option>
+									<option value="LICENCIA DE PATERNIDAD">LICENCIA DE PATERNIDAD</option>
+									<option value="ACCIDENTE DE TRABAJO">ACCIDENTE DE TRABAJO</option>
+									<option value="ENFERMEDAD LABORAL">ENFERMEDAD LABORAL</option>
+									<option value="FONDO DE PENSIONES">FONDO DE PENSIONES</option>
+									<option value="ACCIDENTE DE TRANSITO">ACCIDENTE DE TRANSITO</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="diagnostico" class="form-label">Diagnostico</label>
+								<select id="diagnostico" name="diagnostico" class="form-select"
+									th:field="*{diagnosticos}" required>
+									<option value="">Seleccione una opción</option>
+									<option th:each="diagnostico : ${listaDiagnosticos}" th:value="${diagnostico.id}"
+										th:text="${diagnostico.codigo} + ' - ' + ${diagnostico.diagnostico}">
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="mb-3">
+								<label for="clasificacion" class="form-label">Clasificación</label>
+								<select id="clasificacion" name="clasificacion" th:field="*{clasificacion}"
+									class="form-select">
+									<option value="">SIN CLASIFICACION</option>
+									<option value="INICIO">INICIO</option>
+									<option value="PRORROGA">PRORROGA</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="fechaInicio" class="form-label">Fecha inicio incapacidad</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+									<input type="date" class="form-control" name="fechaInicio" id="fechaInicio"
+										th:field="*{fechainicio}" placeholder="" required />
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="fechaFin" class="form-label">Fecha fin incapacidad</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+									<input type="date" class="form-control" name="fechaFin" id="fechaFin"
+										th:field="*{fechafin}" placeholder="" required />
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="totalDias" class="form-label"> Duración </label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="fa-solid fa-hashtag"></i></span>
+									<input type="number" class="form-control text-center" name="totalDias"
+										id="totalDias" th:value="${totalDiasIncapacidad}" readonly required />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- FIN DETALLES AUSENTISMO -->
+
+					<!-- DETALLES PAGO -->
+					<div class="bg-primary text-white text-center mb-3">
+						DETALLES PAGO
+					</div>
+
+					<!-- FIN DETALLES PAGO -->
+			</div>
+
+			<div class="mb-3 mt-3">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				<a th:href="@{/ausentismos}" class="btn btn-secondary">Cancelar</a>
+			</div>
+
+			</form>
+
+		</div>
+
+	</div>
+	</div>
+
+	<th:block layout:fragment="page-scripts">
+		<script>
+
+			const formulario = document.querySelector('#formulario');
+
+			const empleadoSelect = document.querySelector('#codempleado');
+
+			const areasSelect = document.querySelector('#areas');
+			const tipoIncapacidadSelect = document.querySelector('#tipoincapacidad');
+			const enfermedadSelect = document.querySelector('#enfermedad');
+			const salarioInput = document.querySelector('#salario');
+			const fechaInSelect = document.querySelector('#fechaInicio');
+			const fechaOutSelect = document.querySelector('#fechaFin');
+
+			// dselect(empleadoSelect, {
+			// 	search: true
+			// });
+
+			// dselect(diagnosticoSelect, {
+			// 	search: true
+			// });
+
+			function calcularSalarioDiario() {
+				var totalDia = (document.getElementById("salario").value) / 30;
+
+				document.getElementById("salarioxdia").value = totalDia;
+			}
+
+			function calcularDias() {
+				console.log("Llamando calculo dias..");
+				var fechaIni = document.getElementById("fechaInicio").value;
+				var fechaFin = document.getElementById("fechaFin").value;
+				console.log("fechas: " + fechaIni + "   " + fechaFin);
+				var fecha1 = Date.parse(fechaIni);
+				var fecha2 = Date.parse(fechaFin);
+				console.log("fechas Milisegundos: " + fecha1 + "   " + fecha2);
+				var diferencia = fecha2 - fecha1;
+				console.log("Diferencia: " + diferencia);
+				//var totalDias=(diferencia/1000)/60/60/24;
+				var totalDias = (diferencia / (3600 * 1000 * 24));
+				document.getElementById("totalDias").value = (totalDias + 1);
+
+			}
+
+			const validaIncapacidad = () => {
+				var incapacidad = document.getElementById("tipoincapacidad").value;
+				if (incapacidad == "LP" || incapacidad == "LM") {
+
+					document.getElementById("clasificacion").value = "";
+					// alert(incapacidad);
+					// //document.getElementById("city").required = false;
+					// var fechaIni = document.getElementById("fechaInicio").value;
+					// // var fechaFin = document.getElementById("fechaFin").value;
+					// var fecha1 = Date.parse(fechaIni);
+
+					// alert(new Date());
+					// document.getElementById("fechaFin").value = new Date("27/08/2022");
+					// const fecha = fechaIni.getDate();
+
+					//jQuery
+					$("#clasificacion").val("");
+				}
+			}
+
+			const calcularSalarioDiario2 = () => {
+				var totalDia = (document.getElementById("salario").value) / 30;
+				document.getElementById("salarioxdia").value = totalDia;
+			}
+
+			const calcularDias2 = () => {
+				console.log("Llamando calculo dias..");
+				var fechaIni = document.getElementById("fechaInicio").value;
+				var fechaFin = document.getElementById("fechaFin").value;
+				console.log("del " + fechaIni + "  al " + fechaFin);
+				var fecha1 = Date.parse(fechaIni);
+				var fecha2 = Date.parse(fechaFin);
+				console.log("fechas Milisegundos: " + fecha1 + "   " + fecha2);
+				var diferencia = fecha2 - fecha1;
+				console.log("Diferencia: " + diferencia);
+				//var totalDias=(diferencia/1000)/60/60/24;
+				var totalDias = (diferencia / (3600 * 1000 * 24));
+				document.getElementById("totalDias").value = (totalDias + 1);
+			}
+
+			//empleadoSelect.addEventListener('change', calcularSalarioDiario2);
+			tipoIncapacidadSelect.addEventListener('change', validaIncapacidad);
+			salarioInput.addEventListener('change', calcularSalarioDiario2);
+			fechaInSelect.addEventListener('change', calcularDias2);
+			fechaOutSelect.addEventListener('change', calcularDias2);
+
+
+		</script>
+	</th:block>
+</body>
+
+</html>
