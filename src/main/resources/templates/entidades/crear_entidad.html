@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<!--<div class="right_col" role="main" layout:fragment="page-content">-->
+	<div class="container-fluid" layout:fragment="page-content">
+		<div class="container mt-3">
+			<div class="row">
+				<h3 class="mb-3">Nueva entidad</h3>
+				<form th:action="@{/entidades}" th:object="${entidad}" method="post" class="needs-validation">
+					<div class="col-12">
+						<div class="mb-3">
+							<label for="nombre" class="form-label">Nombre de la entidad</label>
+							<input type="text" class="form-control" id="nombre" name="nombre" maxlength="80"
+								th:field="*{nombre}" placeholder="Nombre de la entidad" required />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="mb-3">
+								<label for="nit" class="form-label">Número de Identificación Tributaría (NIT)</label>
+								<input type="text" class="form-control" name="nit" id="nit" maxlength="13"
+									th:field="*{nit}" placeholder="NIT de la entidad" required />
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="tipo" class="form-label">Tipo de entidad</label>
+								<select id="tipo" name="tipo" class="form-select" th:field="*{tipo}"
+									aria-label="Default select example" required>
+									<option value="">Seleccione una opción</option>
+									<option value="EPS">EPS</option>
+									<option value="ARL">ARL</option>
+									<option value="AFP">AFP</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="mb-3">
+								<label for="estado" class="form-label">Estado</label>
+								<select id="estado" name="estado" class="form-select" th:field="*{estado}"
+									aria-label="Default select example" required>
+									<option value="">Seleccione una opción</option>
+									<option value=1>Activa</option>
+									<option value=0>Inactiva</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="mb-3 mt-3">
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a th:href="@{/entidades}" class="btn btn-secondary">Cancelar</a>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
