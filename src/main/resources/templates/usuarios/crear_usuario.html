@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<!--<div class="right_col" role="main" layout:fragment="page-content">-->
+	<div class="container-fluid" layout:fragment="page-content">
+		<div class="container mt-3">
+			<div class="row">
+				<h3 class="mb-3">Nuevo usuario</h3>
+				<form th:action="@{/usuarios}" th:object="${datosUsuario}" method="post" class="needs-validation">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="codempleado" class="form-label">Empleado</label>
+								<select id="codempleado" name="codempleado" class="form-select form-controll p-00 "
+									th:field="*{empleado}" required>
+									<option value="">Seleccione una opción</option>
+									<option th:each="empleado : ${empleados}" th:value="${empleado.codempleado}"
+										th:text="${empleado.nombres} + ' ' + ${empleado.apellidos}">
+									</option>
+								</select>
+
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="roles" class="form-label">Rol de ingreso al sistema</label>
+								<select id="roles" name="roles" class="form-select" th:field="*{rol}" required>
+									<option value="">Seleccione una opción</option>
+									<option value="administrador">Administrador</option>
+									<option value="gestor">Gestor</option>
+									<option value="consultor">Consultor</option>
+									<option value="usuario">Usuario estandar</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="usuario" class="form-label">Usuario para ingresar al sistema</label>
+								<input type="text" class="form-control" id="usuario" name="usuario" maxlength="30"
+									th:field="*{usuario}" placeholder="Nombre de usuario" required />
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="clave" class="form-label">Clave de acceso</label>
+								<input type="text" class="form-control" name="clave" id="clave" maxlength="255"
+									th:field="*{clave}" placeholder="Clave de acceso" required />
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="mb-3">
+								<label for="estado" class="form-label">Estado</label>
+								<select id="estado" name="estado" class="form-select" required>
+									<option value="">Seleccione una opción</option>
+									<option value=1>Activo</option>
+									<option value=0>Inactivo</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="mb-3 mt-3">
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a th:href="@{/usuarios}" class="btn btn-secondary">Cancelar</a>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
