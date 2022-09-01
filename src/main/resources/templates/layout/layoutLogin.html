@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:fragment="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Duhan Enrique Renteria" />
+    <title>SIGA - Sistema Gestión Ausentismo</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" th:href="@{/imagenes/favicon/favicon2.ico}" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{/css/custom.min.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Page content-->
+    <div class="container" layout:fragment="page-content">
+
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <!-- Core theme JS-->
+    <script th:src="@{/js/scripts.js}"></script>
+
+    <script src="https://kit.fontawesome.com/72156f2c6c.js" crossorigin="anonymous"></script>
+
+
+    <!--OTRO SCRIPTS PARA PAGINAS-->
+    <th:block layout:fragment="page-scripts">
+
+    </th:block>
+</body>
+
+</html>
